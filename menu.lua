@@ -4,7 +4,7 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-07T22:08:11+02:00
+-- @Last modified time: 2018-05-07T22:23:47+02:00
 
 
 local composer = require("composer")
@@ -27,18 +27,14 @@ function scene:show(event)
     local params = event.params
 
     if(event.phase == "did") then
-      continueButton = button.newButton()
+        continueButton = button.newButton()
 
-      local function pressHandle(event)
-          if event.phase == 'began' then
-              print('pressing game button')
-          end
-          if event.phase == 'ended' then
-              print('released game button')
-              composer.gotoScene("scenes.game")
-          end
-      end
-      continueButton:addEventListener('press', pressHandle)
+        local function pressHandle(event)
+            if event.phase == 'ended' then
+                composer.gotoScene("scenes.game")
+            end
+        end
+        continueButton:addEventListener('press', pressHandle)
     end
 end
 

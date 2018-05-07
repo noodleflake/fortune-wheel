@@ -49,14 +49,14 @@ local function sql_store()
         self.close()
     end
 
-    function self.insert(key , value)
+    function self.insert(key, value)
         self.open()
         local dbValue = type(value) == "string" and "'"..value.."'" or value
         self.dbInstance:exec("INSERT INTO settings (key,value) VALUES ('"..key.."',"..dbValue..");")
         self.close()
     end
 
-    function self.update(key , value)
+    function self.update(key, value)
         self.open()
         local dbValue = type(value) == "string" and "'"..value.."'" or value
         self.dbInstance:exec("UPDATE settings SET value="..dbValue.." WHERE key='"..key.."';")
@@ -89,7 +89,7 @@ local function sql_store()
     function self.init(databaseName)
         local databaseName = databaseName
         if not(databaseName) then
-          databaseName = "database.db"
+            databaseName = "database.db"
         end
         self.dbPath = system.pathForFile(databaseName, system.DocumentsDirectory)
         self.create()

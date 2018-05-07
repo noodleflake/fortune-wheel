@@ -4,11 +4,11 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-07T22:05:17+02:00
+-- @Last modified time: 2018-05-07T22:24:24+02:00
 
- function data_store()
+local function data_store()
     local self = {
-      storeInstance = nil
+        storeInstance = nil
     }
 
     function self.clear()

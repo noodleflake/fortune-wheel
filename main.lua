@@ -4,7 +4,7 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-07T22:05:05+02:00
+-- @Last modified time: 2018-05-07T22:25:43+02:00
 
 
 local config = require("config")
@@ -45,7 +45,7 @@ local client = {
 }
 
 --Initialize ads
-appodeal.init({ }, { appKey=application.appodeal.appKey })
+appodeal.init({ }, { appKey = application.appodeal.appKey })
 appodeal.load(application.appodeal.adType)
 
 -- Go to the menu screen

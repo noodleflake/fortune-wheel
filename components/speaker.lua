@@ -4,7 +4,7 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-07T22:05:48+02:00
+-- @Last modified time: 2018-05-07T22:23:59+02:00
 
 
 -- Your code here
@@ -24,14 +24,14 @@ local function speaker()
     function self.populateWithSettings()
         local soundVolume = data_store.get("soundVolume")
         if(soundVolume == nil or soundVolume < 0 or soundVolume > 10) then
-            soundVolume = audio.getVolume({ channel=0 })*10
+            soundVolume = audio.getVolume({ channel = 0 }) * 10
         end
         local musicVolume = data_store.get("musicVolume")
         if(musicVolume == nil or musicVolume < 0 or musicVolume > 10) then
-            musicVolume = audio.getVolume({ channel=1 })*10
+            musicVolume = audio.getVolume({ channel = 1 }) * 10
         end
-        audio.setVolume(soundVolume*0.1, { channel=0 })
-        audio.setVolume(musicVolume*0.1, { channel=1 })
+        audio.setVolume(soundVolume * 0.1, { channel = 0 })
+        audio.setVolume(musicVolume * 0.1, { channel = 1 })
     end
 
     function self.init()

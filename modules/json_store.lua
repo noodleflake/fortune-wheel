@@ -4,14 +4,14 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-06T23:04:34+02:00
+-- @Last modified time: 2018-05-07T22:25:19+02:00
 
 local function json_store()
     local json = require("json")
 
     local self = {
-      dbInstance = nil,
-      dbPath = nil
+        dbInstance = nil,
+        dbPath = nil
     }
 
     function self.clear()
@@ -23,7 +23,7 @@ local function json_store()
         if file then
             local jsonRaw = file:read()
             if jsonRaw then
-              self.dbInstance = json.decode(jsonRaw)
+                self.dbInstance = json.decode(jsonRaw)
             end
             io.close(file)
         end
@@ -42,27 +42,27 @@ local function json_store()
     end
 
     function self.get(key, root)
-      local root = root
-      if not(root) then
-          if not(self.dbInstance) then
-              self.populate()
-          end
-          root = self.dbInstance
-      end
-      local foundKey = false
-      for k,v in pairs(root) do
-          if k == key then
-            return v, k, root
-          end
-      end
-      for k,v in pairs(root) do
-          if type(v) == 'table' then
-            local object = self.get(key, v)
-            if object then
-                return object, key, v
+        local root = root
+        if not(root) then
+            if not(self.dbInstance) then
+                self.populate()
             end
-          end
-      end
+            root = self.dbInstance
+        end
+        local foundKey = false
+        for k, v in pairs(root) do
+            if k == key then
+                return v, k, root
+            end
+        end
+        for k, v in pairs(root) do
+            if type(v) == 'table' then
+                local object = self.get(key, v)
+                if object then
+                    return object, key, v
+                end
+            end
+        end
     end
 
     function self.delete(key, root)
@@ -100,7 +100,7 @@ local function json_store()
     function self.init(databaseName)
         local databaseName = databaseName
         if not(databaseName) then
-          databaseName = "database.json"
+            databaseName = "database.json"
         end
         self.dbPath = system.pathForFile(databaseName, system.DocumentsDirectory)
 
