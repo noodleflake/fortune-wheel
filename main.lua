@@ -4,12 +4,11 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-06T23:34:04+02:00
+-- @Last modified time: 2018-05-07T21:15:10+02:00
 
 
 local config = require("config")
 local composer = require("composer")
-local json = require('json')
 local appodeal = require("plugin.appodeal")
 local data_store = require("libs.data_store")
 local monitor = require("libs.monitor")
@@ -44,7 +43,6 @@ local client = {
     ["platform"] = system.getInfo("platform"),
     ["platformVersion"] = system.getInfo("platformVersion"),
 }
-local encoded = json.encode(client)
 
 --Initialize ads
 appodeal.init({ }, { appKey=application.appodeal.appKey })
