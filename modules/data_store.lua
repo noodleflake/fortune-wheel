@@ -4,9 +4,9 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-06T18:14:52+02:00
+-- @Last modified time: 2018-05-07T22:05:17+02:00
 
-local function data_store()
+ function data_store()
     local self = {
       storeInstance = nil
     }
@@ -25,7 +25,7 @@ local function data_store()
     end
 
     function self.init(databaseName, isSql)
-        self.storeInstance = require('libs.' .. (isSql and 'sql' or 'json') .. '_store')
+        self.storeInstance = require('modules.' .. (isSql and 'sql' or 'json') .. '_store')
         self.storeInstance.init(databaseName)
     end
 

@@ -4,15 +4,15 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-07T00:01:39+02:00
+-- @Last modified time: 2018-05-07T22:08:11+02:00
 
 
 local composer = require("composer")
 local json = require("json")
 --local appodeal = require("plugin.appodeal")
-local button = require("classes.button")
+local button = require("controls.button")
 --local alignment = require("alignment")
-local monitor = require("libs.monitor")
+local monitor = require("modules.monitor")
 
 local continueButton
 
@@ -31,11 +31,11 @@ function scene:show(event)
 
       local function pressHandle(event)
           if event.phase == 'began' then
-              print('began')
+              print('pressing game button')
           end
           if event.phase == 'ended' then
-              print('ended')
-              -- composer.gotoScene("game")
+              print('released game button')
+              composer.gotoScene("scenes.game")
           end
       end
       continueButton:addEventListener('press', pressHandle)

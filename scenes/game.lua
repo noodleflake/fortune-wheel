@@ -4,13 +4,13 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-06T23:34:10+02:00
+-- @Last modified time: 2018-05-07T21:55:40+02:00
 
 local composer = require("composer")
 --local appodeal = require("plugin.appodeal")
 -- local button = require("classes.button")
 --local alignment = require("alignment")
-local monitor = require("libs.monitor")
+local monitor = require("modules.monitor")
 
 local scene = composer.newScene()
 

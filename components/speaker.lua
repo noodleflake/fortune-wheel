@@ -4,11 +4,11 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-06T23:04:36+02:00
+-- @Last modified time: 2018-05-07T22:05:48+02:00
 
 
 -- Your code here
-local data_store = require("libs.data_store")
+local data_store = require("modules.data_store")
 local audio = require("audio")
 
 local function speaker()

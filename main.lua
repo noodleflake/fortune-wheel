@@ -4,15 +4,15 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-07T21:15:10+02:00
+-- @Last modified time: 2018-05-07T22:05:05+02:00
 
 
 local config = require("config")
 local composer = require("composer")
 local appodeal = require("plugin.appodeal")
-local data_store = require("libs.data_store")
-local monitor = require("libs.monitor")
-local speaker = require("libs.speaker")
+local data_store = require("modules.data_store")
+local monitor = require("modules.monitor")
+local speaker = require("components.speaker")
 
 -- Initialize database with name
 data_store.init_json(application.database.databaseName)
