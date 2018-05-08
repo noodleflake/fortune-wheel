@@ -4,12 +4,12 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-07T22:25:24+02:00
+-- @Last modified time: 2018-05-07T23:24:51+02:00
 
 local function monitor()
 
     local self = {
-        timer = nil
+        timer = system.getTimer()
     }
 
     function self.start()
