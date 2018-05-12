@@ -4,7 +4,7 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-07T23:21:21+02:00
+-- @Last modified time: 2018-05-12T19:45:48+02:00
 
 
 local composer = require("composer")
@@ -28,6 +28,24 @@ function scene:show(event)
 
     if(event.phase == "did") then
         continueButton = button.newButton()
+
+        local widget = require( "widget" )
+
+        -- Create the widget
+        local button1 = widget.newButton({
+            left = 100,
+            top = 200,
+            id = "button1",
+            label = "Default",
+            defaultFile = "images/buttons/sp-button-continue-normal.png",
+            overFile = "images/buttons/sp-button-continue-press.png",
+            onEvent = handleButtonEvent,
+            emboss = false,
+            width = 396,
+            height = 160,
+            cornerRadius = 2
+        })
+        button1:setLabel( "Shape" )
 
         local function pressHandle(event)
             if event.phase == 'ended' then
