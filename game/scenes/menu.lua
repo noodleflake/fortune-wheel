@@ -4,7 +4,7 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-13T21:26:15+02:00
+-- @Last modified time: 2018-05-14T01:51:15+02:00
 
 
 local composer = require("composer")
@@ -13,7 +13,7 @@ local alignment = require("components.alignment")
 local monitor = require("modules.monitor")
 local options = require("options")
 local image = require("components.image")
-local widget = require("widget")
+local button = require("components.templates.button")
 
 local scene = composer.newScene()
 
@@ -25,6 +25,7 @@ local scene = composer.newScene()
 -- Initialize variables
 local playButton
 local musicTrack
+
 
 local function gotoGame()
 	composer.removeScene("scenes.game")
@@ -74,52 +75,63 @@ function scene:create(event)
 
 	local buttonOptions = options.buttons.lobby
 	local buttonWidth = buttonOptions.normal.width
-	local buttonLobby = widget.newButton({
+
+	local buttonLobby = button.newButton({
+		group = sceneGroup,
         defaultFile = buttonOptions.normal.filename,
         overFile = buttonOptions.press.filename,
 		left = alignment.viewableContentRight - buttonWidth - topPanelButtonPaddingRight,
 		top = alignment.viewableContentTop + topPanelButtonPaddingTop,
+		label = "LOBBY",
+		labelLeftPadding = 60,
+		onRelease = function(event)
+			print("Lobby tapped")
+		end,
     })
 	local topPanelButtonPaddingRight = buttonWidth + topPanelButtonPaddingWidth + topPanelButtonPaddingRight
 
 	local buttonOptions = options.buttons.settings
 	local buttonWidth = buttonOptions.normal.width
-	local buttonSettings = widget.newButton({
+	local buttonSettings = button.newButton({
+		group = sceneGroup,
         defaultFile = buttonOptions.normal.filename,
         overFile = buttonOptions.press.filename,
 		left = alignment.viewableContentRight - buttonWidth - topPanelButtonPaddingRight,
 		top = alignment.viewableContentTop + topPanelButtonPaddingTop,
+		onRelease = function(event)
+			print("Settings tapped")
+		end,
     })
 	local topPanelButtonPaddingRight = buttonWidth + topPanelButtonPaddingWidth + topPanelButtonPaddingRight
 
 	local buttonOptions = options.buttons.shop
 	local buttonWidth = buttonOptions.normal.width
-	local buttonShop = widget.newButton({
+	local buttonShop = button.newButton({
+		group = sceneGroup,
         defaultFile = buttonOptions.normal.filename,
         overFile = buttonOptions.press.filename,
 		left = alignment.viewableContentRight - buttonWidth - topPanelButtonPaddingRight,
 		top = alignment.viewableContentTop + topPanelButtonPaddingTop,
+		label = "SHOP",
+		labelLeftPadding = 75,
+		onRelease = function(event)
+			print("Shop tapped")
+		end,
     })
 	local topPanelButtonPaddingRight = buttonWidth + topPanelButtonPaddingWidth + topPanelButtonPaddingRight
 
 	local buttonOptions = options.buttons.continue
-    local buttonContinue = widget.newButton({
+    local buttonContinue = button.newButton({
+		group = sceneGroup,
 		defaultFile = buttonOptions.normal.filename,
         overFile = buttonOptions.press.filename,
         left = alignment.viewableContentLeft,
         top = alignment.viewableContentTop,
         onRelease = gotoGame
     })
-	buttonContinue.alpha = 0
-
-    if(sceneGroup) then
-        sceneGroup:insert(buttonLobby);
-		sceneGroup:insert(buttonSettings);
-		sceneGroup:insert(buttonShop);
-		sceneGroup:insert(buttonContinue);
-    end
 
     -- musicTrack = audio.loadStream()
+	-- soundButton = audio.loadSound(options.sounds.button.filename)
 end
 
 function scene:show(event)
@@ -145,6 +157,7 @@ function scene:destroy(event)
     -- Code here runs prior to the removal of scene's view
 	-- Dispose audio!
 	-- audio.dispose( musicTrack )
+	-- audio.dispose(soundButton)
 end
 
 scene:addEventListener("create", scene)

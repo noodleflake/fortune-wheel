@@ -4,7 +4,7 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-13T20:55:10+02:00
+-- @Last modified time: 2018-05-14T01:23:11+02:00
 
 
 local _M = {
@@ -72,10 +72,32 @@ local _M = {
             height = 96,
         }
     },
+    fonts = {
+        bebasNeue = {
+            Bold = {
+                filename = "assets/fonts/BebasNeue Bold.ttf"
+            },
+            Book = {
+                filename = "assets/fonts/BebasNeue Book.ttf"
+            },
+            Light = {
+                filename = "assets/fonts/BebasNeue Light.ttf"
+            },
+            Regular = {
+                filename = "assets/fonts/BebasNeue Regular.ttf"
+            },
+            Thin = {
+                filename = "assets/fonts/BebasNeue Thin.ttf"
+            },
+        },
+    },
     sounds = {
         spin = {
             filename = "",
-        }
+        },
+        button = {
+            filename = "assets/sounds/button.wav",
+        },
     },
     music = {
         main = {
