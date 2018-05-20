@@ -4,7 +4,7 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-14T01:51:15+02:00
+-- @Last modified time: 2018-05-20T20:26:01+02:00
 
 
 local composer = require("composer")
@@ -13,7 +13,8 @@ local alignment = require("components.alignment")
 local monitor = require("modules.monitor")
 local options = require("options")
 local image = require("components.image")
-local button = require("components.templates.button")
+--local button = require("components.templates.button")
+local widget = require( "widget" )
 
 local scene = composer.newScene()
 
@@ -23,7 +24,7 @@ local scene = composer.newScene()
 -- -----------------------------------------------------------------------------------
 
 -- Initialize variables
-local playButton
+local soundButton
 local musicTrack
 
 
@@ -69,69 +70,92 @@ function scene:create(event)
 		y = alignment.viewableContentTop,
 	})
 
-	local topPanelButtonPaddingTop = 30
+	local topPanelButtonPaddingTop = 25
 	local topPanelButtonPaddingRight = 20
 	local topPanelButtonPaddingWidth = 20
 
 	local buttonOptions = options.buttons.lobby
 	local buttonWidth = buttonOptions.normal.width
 
-	local buttonLobby = button.newButton({
-		group = sceneGroup,
+	local buttonLobby = widget.newButton({
         defaultFile = buttonOptions.normal.filename,
         overFile = buttonOptions.press.filename,
+		font = options.fonts.bebasNeue.Bold.filename,
+		labelAlign = "left",
+		labelColor = { default={ 1, 1, 1 } },
 		left = alignment.viewableContentRight - buttonWidth - topPanelButtonPaddingRight,
 		top = alignment.viewableContentTop + topPanelButtonPaddingTop,
+		fontSize = 43,
 		label = "LOBBY",
-		labelLeftPadding = 60,
+		labelXOffset = 10,
+		labelYOffset = -3,
 		onRelease = function(event)
+			audio.play(soundButton)
 			print("Lobby tapped")
 		end,
     })
+	sceneGroup:insert(buttonLobby)
 	local topPanelButtonPaddingRight = buttonWidth + topPanelButtonPaddingWidth + topPanelButtonPaddingRight
 
 	local buttonOptions = options.buttons.settings
 	local buttonWidth = buttonOptions.normal.width
-	local buttonSettings = button.newButton({
-		group = sceneGroup,
+	local buttonSettings = widget.newButton({
         defaultFile = buttonOptions.normal.filename,
         overFile = buttonOptions.press.filename,
 		left = alignment.viewableContentRight - buttonWidth - topPanelButtonPaddingRight,
 		top = alignment.viewableContentTop + topPanelButtonPaddingTop,
 		onRelease = function(event)
+			audio.play(soundButton)
 			print("Settings tapped")
 		end,
     })
+	sceneGroup:insert(buttonSettings)
 	local topPanelButtonPaddingRight = buttonWidth + topPanelButtonPaddingWidth + topPanelButtonPaddingRight
 
 	local buttonOptions = options.buttons.shop
 	local buttonWidth = buttonOptions.normal.width
-	local buttonShop = button.newButton({
-		group = sceneGroup,
+	local buttonShop = widget.newButton({
         defaultFile = buttonOptions.normal.filename,
         overFile = buttonOptions.press.filename,
+		font = options.fonts.bebasNeue.Bold.filename,
+		labelAlign = "left",
+		labelColor = { default={ 1, 1, 1 } },
 		left = alignment.viewableContentRight - buttonWidth - topPanelButtonPaddingRight,
 		top = alignment.viewableContentTop + topPanelButtonPaddingTop,
+		fontSize = 43,
 		label = "SHOP",
-		labelLeftPadding = 75,
+		labelXOffset = 28,
+		labelYOffset = -3,
 		onRelease = function(event)
+			audio.play(soundButton)
 			print("Shop tapped")
 		end,
     })
+	sceneGroup:insert(buttonShop)
 	local topPanelButtonPaddingRight = buttonWidth + topPanelButtonPaddingWidth + topPanelButtonPaddingRight
 
 	local buttonOptions = options.buttons.continue
-    local buttonContinue = button.newButton({
-		group = sceneGroup,
+    local buttonContinue = widget.newButton({
 		defaultFile = buttonOptions.normal.filename,
         overFile = buttonOptions.press.filename,
-        left = alignment.viewableContentLeft,
-        top = alignment.viewableContentTop,
-        onRelease = gotoGame
+		font = options.fonts.bebasNeue.Bold.filename,
+		labelAlign = "left",
+		labelColor = { default={ 1, 1, 1 } },
+		left = display.contentCenterX,
+        top = display.contentCenterY,
+		fontSize = 55,
+		label = "Martin",
+		labelXOffset = 23,
+		labelYOffset = -3,
+        onRelease = function(event)
+			audio.play(soundButton)
+			print("Martin tapped")
+			gotoGame(event)
+		end,
     })
-
+	sceneGroup:insert(buttonContinue)
     -- musicTrack = audio.loadStream()
-	-- soundButton = audio.loadSound(options.sounds.button.filename)
+	soundButton = audio.loadSound(options.sounds.button.filename)
 end
 
 function scene:show(event)
@@ -153,11 +177,10 @@ end
 function scene:destroy(event)
     local sceneGroup = self.view
     local params = event.params
-
     -- Code here runs prior to the removal of scene's view
 	-- Dispose audio!
 	-- audio.dispose( musicTrack )
-	-- audio.dispose(soundButton)
+	audio.dispose(soundButton)
 end
 
 scene:addEventListener("create", scene)

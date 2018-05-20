@@ -4,15 +4,45 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-13T17:26:57+02:00
+-- @Last modified time: 2018-05-20T20:04:10+02:00
 
 
 local config = require("config")
 local composer = require("composer")
 local appodeal = require("plugin.appodeal")
 local data_store = require("modules.data_store")
-local monitor = require("modules.monitor")
 local speaker = require("components.speaker")
+
+-- Removes bottom bar on Android
+if system.getInfo( "androidApiLevel" ) and system.getInfo( "androidApiLevel" ) < 19 then
+	native.setProperty( "androidSystemUiVisibility", "lowProfile" )
+else
+	native.setProperty( "androidSystemUiVisibility", "immersiveSticky" )
+end
+
+-- Are we running on the Corona Simulator?
+-- https://docs.coronalabs.com/api/library/system/getInfo.html
+local isSimulator = system.getInfo( "environment" ) == "simulator"
+
+-- If we are running in the Corona Simulator, enable diagnostics
+if isSimulator then
+
+    local function handleKey(event)
+        local phase = event.phase
+        local key = event.keyName
+        if phase == "up" and key == "d" then
+
+            -- Show FPS
+            local diagnostic = require("modules.diagnostic")
+            local diagnosticHeader = diagnostic:newDiagnostic()
+            diagnosticHeader:show()
+        end
+    end
+    -- Listen for key events in Runtime
+    -- See the "key" event documentation for more details:
+    -- https://docs.coronalabs.com/api/event/key/index.html
+    Runtime:addEventListener( "key", handleKey )
+end
 
 -- Initialize database with name
 data_store.init_json(application.database.databaseName)
