@@ -4,7 +4,7 @@
 -- @Project: Fortune Wheel
 --
 -- @Last modified by:   martinswanepoel
--- @Last modified time: 2018-05-14T01:50:01+02:00
+-- @Last modified time: 2018-05-14T01:52:21+02:00
 
 local widget = require( "widget" )
 local options = require( "options" )
